@@ -3,22 +3,18 @@ import React from 'react';
 import useAuth from './useAuth';
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3000/'
+    baseURL: 'http://localhost:3000'
 })
 
 const useAxiosSecure = () => {
     const { user } = useAuth();
 
     axiosInstance.interceptors.request.use(config => {
-        config.headers.authorization =`Bearer ${user.accessToken}`
+        config.headers.authorization = `Bearer ${user.accessToken}`
         return config;
     })
 
-    return (
-        <div>
-
-        </div>
-    );
+    return axiosInstance;
 };
 
 export default useAxiosSecure;

@@ -7,11 +7,9 @@ const useJobApi = () => {
     const jobsCreatedByPromise = email => {
         return axiosSecure.get(`/jobs/applications?email=${email}`).then(res => res.data);
     }
-    return (
-        <div>
-
-        </div>
-    );
+    return {
+        jobsCreatedByPromise
+    };
 };
 
 export default useJobApi;

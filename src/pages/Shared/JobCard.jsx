@@ -1,11 +1,15 @@
 import React from 'react';
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import { FiMapPin } from "react-icons/fi";
 import { Link } from 'react-router';
 
+
 const JobCard = ({ job }) => {
-    const { title, location, requirements, _id, salaryRange, description, company, company_logo } = job;
+
+    const { title, location,  _id, salaryRange, description, company, company_logo, requirements } = job;
+
     return (
-        <div className="card bg-base-100 w-96 shadow-sm">
+
+        <div className="card border bg-base-100 w-96 shadow-sm">
             <div className='flex gap-2'>
                 <figure>
                     <img
@@ -15,7 +19,7 @@ const JobCard = ({ job }) => {
                 </figure>
                 <div>
                     <h3 className="text-4xl">{company}</h3>
-                    <p className='flex gap-1 items-center'> <FaMapMarkerAlt></FaMapMarkerAlt> {location}</p>
+                    <p className='flex items-center gap-2'> <FiMapPin /> {location}</p>
                 </div>
             </div>
             <div className="card-body">
@@ -23,21 +27,29 @@ const JobCard = ({ job }) => {
                     {title}
                     <div className="badge badge-secondary">NEW</div>
                 </h2>
-                <p>Salary: {salaryRange.min} - {salaryRange.max} {salaryRange.currency}</p>
+                <p>Salary : {salaryRange.min} - {salaryRange.max} bdt </p>
                 <p>{description}</p>
+
                 <div className="card-actions">
+                    {/* <div className="badge badge-outline">Fashion</div> */}
+
                     {
                         requirements.map((skill, index) => <div
                             key={index}
-                            className="badge badge-outline"
-                        >{skill}</div>)
+                            className="badge badge-outline">{skill}</div>
+                        )
                     }
                 </div>
-                <div className="card-actions justify-end">
-                    <Link to={`/jobs/${_id}`}><button className="btn btn-primary">Show Details</button></Link>
+
+                <div className='card-actions justify-end'>
+                    <Link to={`/jobs/${_id}`}>
+                        <button className='btn btn-primary'>Show Details </button>
+                    </Link>
                 </div>
+
             </div>
         </div>
+
     );
 };
 
